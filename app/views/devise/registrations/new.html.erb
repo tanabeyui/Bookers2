@@ -4,8 +4,18 @@
 
       <h2>Sign up</h2>
 
-      <%= form_with model: @user, url: user_registration_path do |f| %>
+      <div id="error_explanation">
+        <% if @user.errors.any? %>
+          <h3><%= @user.errors.count %> errors prohibited this obj from being saved:</h3>
+          <ul>
+            <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
 
+      <%= form_with model: @user, url: user_registration_path do |f| %>
         <div class="field">
           <%= f.label :name %><br>
           <%= f.text_field :name, autofocus: true %>
