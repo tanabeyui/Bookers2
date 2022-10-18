@@ -1,9 +1,41 @@
-<h1>Book detail</h1>
-  <p>投稿ユーザー画像：</p>
-  <p>Title <%= @book.title %></p>
-  <p>Opinion<%= @book.body %></p>
-  <p>ユーザーネーム：<%= @book.user.name %></p>
-  <% if @book.user == current_user %>
-    <%= link_to "削除", book_path(@book), method: :delete %>
-  <% end %>
+<div class="container">
+  <div class="row">
+
+    <%= render 'users/user-info', user: @user, book_new: @book_new %>
+
+
+    <div class="col-md-8 offset-md-1">
+    <h2>Book detail</h2>
+
+    <table class="table">
+      <tbody>
+        <tr>
+          <td>
+          <%= link_to user_path(@book.user.id) do%>
+            <%= image_tag @book.user.get_profile_image(100,100) %>
+            <%= @book.user.name %>
+          <% end %>
+          </td>
+          <td>
+          <%= link_to book_path(@book) do%>
+            <%= @book.title %>
+          <% end %>
+          </td>
+          <td>
+            <%= @book.body %>
+          </td>
+          <% if @book.user == current_user %>
+            <td>
+              <%= link_to "Edit", edit_book_path(@book), class: "btn btn-sm btn-success edit_book_41045" %>
+            </td>
+            <td>
+              <%= link_to "Destroy", book_path(@book), method: :delete, class: "btn btn-sm btn-danger destroy_book_41045", "data-confirm" => "本当に消しますか？" %>
+            </td>
+          <% end %>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+  </div>
 </div>
