@@ -15,7 +15,7 @@ class BooksController < ApplicationController
   def show
     @book = Book.find(params[:id])
   end
-  
+
   def edit
     @book = Book.find(params[:id])
   end
@@ -26,7 +26,7 @@ class BooksController < ApplicationController
     redirect_to book_path(@book)
   end
 
-  
+
   def destroy
     @book = Book.find(params[:id])
     @post_image.destroy
